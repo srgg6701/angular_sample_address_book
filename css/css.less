@@ -25,6 +25,14 @@ html,body{
 #add_record{
     width: 86px;
 }
+button{
+    &.edit:before{
+        content: "Edit";
+    }
+    &.save:before{
+        content: "Save";
+    }
+}
 caption{
     font-weight: bold;
     .header;
@@ -42,25 +50,47 @@ caption, th{
             &:hover{
                 background:#EFEFEF !important;
             }
-            td{
-                .td_common;
-            }
         }	
         &:last-child{
             display:none;
-            input[type="text"]{
-                width: 100%;
+            td{                
+                border-color: white;
             }
         }
         td{
+            font-size: 0.95em;
+            .td_common;
             &:last-child{
                 text-align:center;
+                div{
+                    background-color: #333;
+                    border-radius: 10px;
+                    display: inline-block;
+                    cursor: pointer;
+                    height:19px;
+                    width:19px;
+                    &:hover{
+                        background-color: #D33;
+                    }
+                    span{
+                        color:white;
+                        display: inline-block;
+                        font-family: Arial;
+                        font-size: 0.8em;
+                        -webkit-transform: scale(1.4,1);
+                        &:after{
+                            content:"x";
+                        }
+                    }
+                }
             }
         }
     }
 }
 th{
+    font-weight: normal;
     .header(0.9em);
+    line-height: 23px;
     .td_common;
     .td_gradient;
 }
