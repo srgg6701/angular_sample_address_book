@@ -1,3 +1,39 @@
-body{
-	background-color:yellow;
+.td_common(@type:solid, @thikness:1px, @color:#ccc, @vpadding:2px, @hpadding:4px){
+	border: @type @thikness @color;
+	padding: @vpadding @hpadding;
+}
+.header(@size:1.2em){
+	font-family: Arial, Helvetica;
+	font-size: @size;
+}
+
+html,body{
+	height:100%;
+	padding:0;
+}
+*{
+	box-sizing:border-box;
+}
+caption{
+	font-weight: bold;
+	.header;
+	margin: auto auto 4px 4px;
+	text-align:left;
+}
+caption, th{
+	white-space:nowrap;
+}
+#tblAddressBook{
+	border-collapse: collapse;
+	tr{
+		&:not(:last-child){
+			td{
+				.td_common;
+			}
+		}
+	}
+}
+th{
+	.header(0.9em);
+	.td_common;
 }
