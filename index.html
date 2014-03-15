@@ -7,7 +7,9 @@
         <script src="libs/angular.min.js"></script>
         <script src="controller.js"></script>
         <link rel="stylesheet/less" type="text/css" href="css/css.less" />
-		<script src="libs/less-1.7.0.min.js"></script>        
+		<script src="libs/less-1.7.0.min.js"></script>
+        <script src="libs/jquery-2.1.0.min.js"></script> 
+        <script src="js/js.js"></script>       
     </head>
     <body>
     <table border="0" id="tblAddressBook">
@@ -27,13 +29,13 @@
         <td><button class="edit">Edit</button></td>
       </tr>
       <tr>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
+        <td><input name="name" type="text"></td>
+        <td><input name="surname" type="text"></td>
+        <td><input name="phone_number" type="text"></td>
+        <td><input name="group" type="text"></td>
+        <td><button class="save">Save</button></td>
       </tr>
     </table>
-    <button>Add record</button>
+    <button id="add_record"></button>
     </body>
 </html>
