@@ -1,12 +1,20 @@
-.td_common(@type:solid, @thikness:1px, @color:#ccc, @vpadding:2px, @hpadding:4px){
-	border: @type @thikness @color;
-	padding: @vpadding @hpadding;
-}
+// mixins
 .header(@size:1.2em){
 	font-family: Arial, Helvetica;
 	font-size: @size;
 }
+.td_common(@type:solid, @thikness:1px, @color:#ccc, @vpadding:2px, @hpadding:4px){
+	border: @type @thikness @color;
+	padding: @vpadding @hpadding;
+}
+.td_gradient(@color-top:#FEFEFE,@color-bottom:#CCC){
+	background-image: -moz-linear-gradient(@color-top, @color-bottom);
+	background-image: -o-linear-gradient(@color-top, @color-bottom);
+	background-image: -webkit-linear-gradient(@color-top, @color-bottom);
+	background-image: linear-gradient(@color-top, @color-bottom);
+}
 
+// styles
 html,body{
 	height:100%;
 	padding:0;
@@ -25,15 +33,23 @@ caption, th{
 }
 #tblAddressBook{
 	border-collapse: collapse;
+	margin-bottom: 4px;
 	tr{
 		&:not(:last-child){
 			td{
 				.td_common;
+				&:last-child{
+					text-align:center;
+				}
 			}
+		}
+		&:last-child{
+			display:none;
 		}
 	}
 }
 th{
 	.header(0.9em);
 	.td_common;
+	.td_gradient;
 }
