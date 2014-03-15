@@ -1,0 +1,19 @@
+Implement Address Book. 
+
+Technology stack: AngularJS, code should be covered by unit tests as much as possible along with e2e tests.
+Nice to have feature: 
+Dynamic support of both English and Russian (or any other) languages in UI with ability to switch languages.
+Non functional requirements: 
+Client Side only, persistence can be done into variable or to Html Local Storage.
+
+Application Flow: 
+* "List" –  of existed contacts. Contact has at least 4 fields: 
+	1. name: mandatory, 
+	2. surname: optional, 
+	3. phone number: mandatory, 
+	3. group: optional 
+* Supports search, and group by group field. 
+* Link to "Insert New Contact". 
+* Link to "Edit Existed Contact". 
+* "Insert New Contact" – adding to the list of existed. Preferable implementation is sexy popup. 
+"Edit Existed Contact" – edit one from the list. Preferable implementation is sexy popup or inline editor. 
