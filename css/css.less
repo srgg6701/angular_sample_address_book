@@ -13,7 +13,12 @@
     background-image: -webkit-linear-gradient(@color-top, @color-bottom);
     background-image: linear-gradient(@color-top, @color-bottom);
 }
-
+.added_now{
+    background-color: rgb(254, 254, 138);
+}
+.added_before{
+    background-color: lightyellow;
+}
 // styles
 html,body{
     height:100%;
@@ -38,6 +43,9 @@ caption{
     .header;
     margin: auto auto 4px 4px;
     text-align:left;
+    input[type="search"]{
+        float: right;
+    }
     p{
         font-size: 0.6em;
         font-weight: normal;
@@ -104,11 +112,4 @@ th{
     line-height: 23px;
     .td_common;
     .td_gradient;
-    &:not(.static){
-        color: blue;
-        cursor: default;
-        &:hover{
-            text-decoration: underline;
-        }     
-    }
 }
