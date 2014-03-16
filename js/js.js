@@ -7,7 +7,7 @@ $(function() {
         $(element).attr('width',tdWidth);                
     });   
     // penultimate cols - set align center
-    $('tr td:last-child', tblAdressBook).prev().css('text-align', 'center');
+    centerTdContent();
     // the buttons
     var btn_add_record = $('#add_record');
     // manage btn text
@@ -32,12 +32,6 @@ $(function() {
     // make cell text editable
     $('button.edit, button.save:not(.add)').on('click', function() {
         handleCell(this);
-    });
-    // remove record
-    $('tr td:last-child div', tblAdressBook).on('click', function(){
-        $(this).parents('tr').eq(0).fadeOut(400,function(){
-            console.log('deleting record from local storage...');
-        });
     });
 });
 function getAddressBook(){
@@ -78,3 +72,9 @@ function setInputWidth(element, wType, px, wMinus) {
     if(px) w+='px';
     return  w; 
 } 
+// center TD content
+function centerTdContent(){ console.log('centerTdContent()');
+    // penultimate cols - set align center
+    $('tr td:last-child', getAddressBook()).prev()
+        .css('text-align', 'center');
+}

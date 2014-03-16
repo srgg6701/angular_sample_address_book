@@ -9,7 +9,6 @@
         <link rel="stylesheet/less" type="text/css" href="css/css.less" />
 		<script src="libs/less-1.7.0.min.js"></script>
         <script src="libs/jquery-2.1.0.min.js"></script> 
-        <script src="js/js.js"></script>       
 </head>
 <body ng-controller="abController">
     <table border="0" id="tblAddressBook">
@@ -29,18 +28,23 @@
         <td>{{ contact.surname }}</td>
         <td>{{ contact.phone_number }}</td>
         <td>{{ contact.group }}</td>
-        <td><button class="edit"></button></td>
-        <td><div><span></span></div></td>
+        <td><button class="edit" ng-click="handleRow($event)"></button></td>
+        <td><div ng-click="removeRecord($event)"><span></span></div></td>
       </tr>
       <tr>
-        <td><input name="name" type="text"></td>
-        <td><input name="surname" type="text"></td>
-        <td><input name="phone_number" type="text"></td>
-        <td><input name="group" type="text"></td>
-        <td><button class="save add"></button></td>
+        <td><input name="name" ng-model="name" type="text"></td>
+        <td><input name="surname" ng-model="surname" type="text"></td>
+        <td><input name="phone_number" ng-model="phone_number" type="text"></td>
+        <td><input name="group" ng-model="group" type="text"></td>
+        <td><button class="save add" ng-click="handleRow($event)"></button></td>
         <td>&nbsp;</td>
       </tr>
     </table>
+    <!-- click event is handled in js.js as a jQuery procedure 
+         because it affects on the page's state visually only.
+         No data manipulating. -->
     <button id="add_record"></button>
-    </body>
+    <!-- it is placed here to be seen from the controller's scope-->
+    <script src="js/js.js"></script>           
+</body>
 </html>
