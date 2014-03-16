@@ -2,8 +2,7 @@
 <html ng-app>
     <head>
         <title>Address book</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="utf-8">
         <script src="libs/angular.min.js"></script>
         <script src="controller.js"></script>
         <link rel="stylesheet/less" type="text/css" href="css/css.less" />
@@ -13,17 +12,18 @@
 <body ng-controller="abController">
     <table border="0" id="tblAddressBook">
     	<caption>Address book
+        	<input type="search" placeholder="search contact..." id="search contact" ng-model="searchContact">
         	<p><span class="req">*</span>The fields <strong>Name</strong> and <strong>Phone Number</strong> are mandatory.</p>
         </caption>
       <tr>
         <th>Name</th>
         <th>Surname</th>
         <th>Phone Number</th>
-        <th>Group</th>
-        <th class="static">Edit/Save</th>
-        <th class="static">Remove</th>
+        <th id="gr" title="Collapse/Expand groups">Group</th>
+        <th>Edit/Save</th>
+        <th>Remove</th>
       </tr>
-      <tr ng-repeat="contact in contacts">
+      <tr ng-repeat="contact in contacts | filter:searchContact" class="{{contact.class}}">
         <td>{{ contact.name }}</td>
         <td>{{ contact.surname }}</td>
         <td>{{ contact.phone_number }}</td>

@@ -1,3 +1,6 @@
+// MUST be accessible from js.js and from controller
+var groups=[];
+var Contacts=[];
 function abController($scope){
     // the main container:
     $scope.contacts = [];
@@ -16,7 +19,7 @@ function abController($scope){
             group:          storage['group'],
             class:          className,
         });
-        var groups=[], contacts_book=[];
+        var contacts_book=[];
         for(var i in $scope.contacts){ //console.log('contacts:');console.dir($scope.contacts[i]);
             var current_group = $scope.contacts[i].group;
             if(!groups.length) {
@@ -43,6 +46,7 @@ function abController($scope){
                 }
             }
         } //console.log('%ccope.contacts:', 'color:violet');console.dir($scope.contacts);
+        Contacts=$scope.contacts;
     }
     // fill table from localStorage:
     for(var contact in adressBook){
