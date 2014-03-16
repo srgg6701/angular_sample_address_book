@@ -38,9 +38,17 @@ caption{
     .header;
     margin: auto auto 4px 4px;
     text-align:left;
+    p{
+        font-size: 0.6em;
+        font-weight: normal;
+        margin: 4px auto 7px;        
+    }
 }
 caption, th{
     white-space:nowrap;
+}
+.req{
+    color: red;
 }
 #tblAddressBook{
     border-collapse: collapse;
@@ -93,4 +101,11 @@ th{
     line-height: 23px;
     .td_common;
     .td_gradient;
+    &:not(.static){
+        color: blue;
+        cursor: default;
+        &:hover{
+            text-decoration: underline;
+        }     
+    }
 }
