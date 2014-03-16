@@ -39,16 +39,10 @@ function abController($scope){
             var ind = $(TR).index()-1;
             $scope.contacts.splice(ind,1);
             storeData();
-            //deleteData();
         });
     }
     var storeData = function(){
         console.log('store the record in DB...');
         window.localStorage.setItem('adress_book', JSON.stringify($scope.contacts));
-        // check if user was added:
-        //var datasetsUsers = JSON.parse(getUsers());
     }
-    /*var deleteData = function(){
-        console.log('deleting the record from DB...');            
-    }*/
 }
