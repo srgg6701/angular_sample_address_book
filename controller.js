@@ -2,7 +2,7 @@ function abController($scope){
     $scope.contacts = [];
     // get data from local storage as an array:
     var adressBook = JSON.parse(window.localStorage.getItem('adress_book'));
-    
+    // fill local data from scope or localStorage:
     var makeContacts = function(storage){
         $scope.contacts.push({
             name:           storage['name'], 
@@ -33,6 +33,7 @@ function abController($scope){
             $scope.addContact();
         }
     }
+    // remove a record from the local data and store renewed data in the localStorage: 
     $scope.removeRecord = function(event){
         var TR = $(event.currentTarget).parents('tr').eq(0);
         $(TR).fadeOut(400,function(){
@@ -41,6 +42,7 @@ function abController($scope){
             storeData();
         });
     }
+    // store data in the localStorage: 
     var storeData = function(){
         console.log('store the record in DB...');
         window.localStorage.setItem('adress_book', JSON.stringify($scope.contacts));
