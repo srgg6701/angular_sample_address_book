@@ -6,8 +6,6 @@ $(function() {
         var tdWidth = setInputWidth(element,'width')
         $(element).attr('width',tdWidth);                
     });   
-    // penultimate cols - set align center
-    centerTdContent();
     // the buttons
     var btn_add_record = $('#add_record');
     // manage btn text
@@ -72,9 +70,3 @@ function setInputWidth(element, wType, px, wMinus) {
     if(px) w+='px';
     return  w; 
 } 
-// center TD content
-function centerTdContent(){ console.log('centerTdContent()');
-    // penultimate cols - set align center
-    $('tr td:last-child', getAddressBook()).prev()
-        .css('text-align', 'center');
-}

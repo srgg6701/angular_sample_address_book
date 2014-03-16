@@ -7,10 +7,6 @@ function abController($scope){
         },
     ];
     $scope.addContact = function(){
-        console.log('scope.name = '+$scope.name);
-        console.log('scope.surname = '+$scope.name);
-        console.log('scope.phone_number = '+$scope.name);
-        console.log('scope.group = '+$scope.name);
         if($scope.name && $scope.phone_number){
             $scope.contacts.push({
                 name:           $scope.name, 
@@ -29,14 +25,16 @@ function abController($scope){
     $scope.handleRow = function(event){
         //console.dir(event.currentTarget);
         if($(event.currentTarget).hasClass('add')){           
-            console.log('has class "add"!');
             $scope.addContact();
-            centerTdContent();
         }
     }
     $scope.removeRecord = function(event){
-        $(event.currentTarget).parents('tr').eq(0).fadeOut(400,function(){
+        var TR = $(event.currentTarget).parents('tr').eq(0);
+        $(TR).fadeOut(400,function(){
             console.log('deleting record from local storage...');
+            var ind = $(TR).index()-1;
+            //console.log('index to remove: '+ind)        
+            $scope.contacts.splice(ind,1);
         });
     }
 }
