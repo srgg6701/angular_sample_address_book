@@ -43,11 +43,11 @@ $(function() {
         });
     });
     $('#gr').on('click', function(){
+        var Table=AddressBook.getTable();
+        var tTr=$('tr:not(:has(th))',Table);    
         if(!$(this).attr('data-collapsed')){
             console.dir(groups);
-            var Table=AddressBook.getTable();
-            var Ths=$('tr:has(th)',Table);
-            $('tr:not(:has(th))',Table).hide();
+            $(tTr).hide();
             for(var i in groups){
                 var tr=$('<tr/>',{
                     class:'group',
@@ -58,9 +58,13 @@ $(function() {
                     //onclick:alert('hello')
                 }).text(groups[i]);
                 $(tr).append(td)
-                $(Ths).after(tr);            
+                $('tr:has(th)',Table).after(tr);            
             }
             $(this).attr('data-collapsed', '1');
+        }else{
+           $('tr.group',Table).remove();
+           $(tTr).show();
+           $(this).removeAttr('data-collapsed');
         }
     });
     $(AddressBook.getTable()).on('click','tr.group', function(event){
