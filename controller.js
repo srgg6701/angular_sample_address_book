@@ -3,8 +3,7 @@ var lang=null;
 function abController($scope){
 	var settings=null;
     if(!lang) {
-    	if(settings = JSON.parse(window.localStorage.getItem('settings')))
-    		lang = settings[0]['language']; console.log('lang = '+lang);
+    	lang = (settings = JSON.parse(window.localStorage.getItem('settings')))? settings[0]['language']; console.log('lang = '+lang) : 'en';
     }
     // the main container:
     $scope.contacts = [];
