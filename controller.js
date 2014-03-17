@@ -162,24 +162,24 @@ function abController($scope){
     		save:"save_ru"
     	}];
         $scope.caption=[
-            { caption:          "Адресная книга",
-              search:			"найти контакт",
-              fields:           "Поля",
-              name:             "Имя",
-              and:              "и",
-              phone_number:     "Номер телефона",
-              are_mandatory:    "Обязательны",
+            { caption:          "РђРґСЂРµСЃРЅР°СЏ РєРЅРёРіР°",
+              search:			"РЅР°Р№С‚Рё РєРѕРЅС‚Р°РєС‚",
+              fields:           "РџРѕР»СЏ",
+              name:             "РРјСЏ",
+              and:              "Рё",
+              phone_number:     "РќРѕРјРµСЂ С‚РµР»РµС„РѕРЅР°",
+              are_mandatory:    "РћР±СЏР·Р°С‚РµР»СЊРЅС‹",
             }
         ];
         $scope.headers=[
             {
-                Name:           "Имя",
-                Surname:        "Фамилия",
-                Phone_Number:   "Номер телефона",
-                grManage:       "Груп./Разв.",
-                Group:          "Группа",
-                Edit_Save:      "Ред./Сохр",
-                Remove:         "Удалить"
+                Name:           "РРјСЏ",
+                Surname:        "Р¤Р°РјРёР»РёСЏ",
+                Phone_Number:   "РќРѕРјРµСЂ С‚РµР»РµС„РѕРЅР°",
+                grManage:       "Р“СЂСѓРї./Р Р°Р·РІ.",
+                Group:          "Р“СЂСѓРїРїР°",
+                Edit_Save:      "Р РµРґ./РЎРѕС…СЂ",
+                Remove:         "РЈРґР°Р»РёС‚СЊ"
             }
         ];
     }

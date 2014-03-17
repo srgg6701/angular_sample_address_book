@@ -11,10 +11,10 @@ $(function() {
             return $('#add_record');
         },
         setBtnValDefault:function(){
-            $(this.getBtn()).text((lang=='en')? 'Add record':'Добавить');
+            $(this.getBtn()).text((lang=='en')? 'Add record':'Р”РѕР±Р°РІРёС‚СЊ');
         },
         setBtnValCancel:function(){
-            $(this.getBtn()).text((lang=='en')? 'Cancel':'Отмена');
+            $(this.getBtn()).text((lang=='en')? 'Cancel':'РћС‚РјРµРЅР°');
         }
     }
     var Table=AddressBook.getTable();
