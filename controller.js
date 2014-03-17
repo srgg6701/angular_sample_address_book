@@ -173,7 +173,7 @@ function abController($scope){
         ];
         $scope.headers=[
             {
-                Name:           "ИмяЏ",
+                Name:           "Имя",
                 Surname:        "Фамилия",
                 Phone_Number:   "Номер телефона",
                 grManage:       "Груп./Разв.",
