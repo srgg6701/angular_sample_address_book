@@ -8,6 +8,20 @@
         <link rel="stylesheet/less" type="text/css" href="css/css.less" />
 		<script src="libs/less-1.7.0.min.js"></script>
         <script src="libs/jquery-2.1.0.min.js"></script> 
+        <style>        
+			button.edit:before{
+			    content: "Edit";
+			}
+			button.save:before{
+			    content: "Save";
+			}
+			button.edit_ru:before{
+			    content: "Ред.";
+			}
+			button.save_ru:before{
+			    content: "Сохр.";
+			}
+        </style>
 </head>
 <body ng-controller="abController">
     <table border="0" id="tblAddressBook">
