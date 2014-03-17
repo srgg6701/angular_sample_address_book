@@ -26,11 +26,9 @@ $(function() {
     });
     // get the last row:
     var lastTr = AddressBook.getLastTr();
-    $('td', $(lastTr).prev()).each(function(index, element) {
+    $('td', $(lastTr)).each(function(index, element) {
         // align the width of inputs and tds (width 100% is not the case :()
-        $('td input[type="text"]', lastTr)
-                .eq($(element).index())
-                .css('width', setInputWidth(element));
+        $('input[type="text"]', element).css('width', getThWidth(element));
     });
         
     // set default value on the button under the table:
@@ -78,7 +76,7 @@ $(function() {
     });
 });
 // get th width as base param for calculations
-function setInputWidth(element, wMinus) {
+function getThWidth(element, wMinus) {
     if(!wMinus) wMinus = 0.5; //console.log(wType+' : '+$(element).innerWidth());
     var eIndex=$(element).index();
     var th = $('tbody tr:first-child th',AddressBook.getTable()).eq(eIndex);
