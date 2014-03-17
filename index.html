@@ -11,24 +11,32 @@
 </head>
 <body ng-controller="abController">
     <table border="0" id="tblAddressBook">
-    	<caption>Address book
-        	<input type="search" placeholder="search contact..." id="search contact" ng-model="searchContact">
-        	<p><span class="req">*</span>The fields <strong>Name</strong> and <strong>Phone Number</strong> are mandatory.</p>
+        <caption ng-repeat="text in caption">
+            <div class="fleft">{{text.caption}}</div>
+            <input type="search" placeholder="{{text.search}}..." id="search contact" ng-model="searchContact">
+            <p class="fleft">
+            	<span class="fleft">
+            		<span class="req">*</span>{{text.fields}} <strong>{{text.name}}</strong> {{text.and}} <strong>{{text.phone_number}}</strong> {{text.are_mandatory}}.
+                </span>
+            	<span class="fright">
+            		<span class="link" ng-click="setLang('en')">en</span> | <span class="link" ng-click="setLang('ru')">рус</span>
+                </span>
+            </p>
         </caption>
-      <tr>
-        <th>Name</th>
-        <th>Surname</th>
-        <th>Phone Number</th>
-        <th id="gr" title="Collapse/Expand groups">Group</th>
-        <th>Edit/Save</th>
-        <th>Remove</th>
+      <tr ng-repeat="header in headers">
+        <th>{{header.Name}}</th>
+        <th>{{header.Surname}}</th>
+        <th>{{header.Phone_Number}}</th>
+        <th id="gr" title="{{header.grManage}}">{{header.Group}}</th>
+        <th>{{header.Edit_Save}}</th>
+        <th>{{header.Remove}}</th>
       </tr>
       <tr ng-repeat="contact in contacts | filter:searchContact" class="{{contact.class}}">
         <td>{{ contact.name }}</td>
         <td>{{ contact.surname }}</td>
         <td>{{ contact.phone_number }}</td>
         <td>{{ contact.group }}</td>
-        <td><button class="edit" ng-click="handleRow($event)"></button></td>
+        <td ng-repeat="btn in btns"><button class="{{btn.edit}}" ng-click="handleRow($event)"></button></td>
         <td><div ng-click="removeRecord($event)"><span></span></div></td>
       </tr>
       <tr>
@@ -36,7 +44,7 @@
         <td><input name="surname" ng-model="surname" type="text"></td>
         <td><input name="phone_number" ng-model="phone_number" type="text"></td>
         <td><input name="group" ng-model="group" type="text"></td>
-        <td><button class="save add" ng-click="handleRow($event)"></button></td>
+        <td ng-repeat="btn in btns"><button class="{{btn.save}} add" ng-click="handleRow($event)"></button></td>
         <td>&nbsp;</td>
       </tr>
     </table>

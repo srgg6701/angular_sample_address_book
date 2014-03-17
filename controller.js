@@ -1,7 +1,8 @@
-// MUST be accessible from js.js and from controller
-//var groups=[];
-//var Contacts=[];
+var lang=null;
+// 
 function abController($scope){
+    var settings = JSON.parse(window.localStorage.getItem('settings'));
+    if(!lang) lang = settings[0]['language']; console.log('lang = '+lang);
     // the main container:
     $scope.contacts = [];
     // the container for data which is editing in line:
@@ -73,7 +74,7 @@ function abController($scope){
                 return false;
             }
         }
-        else if($(bttn).hasClass('save')){ // the button in the row while edit mode
+        else if($(bttn).hasClass('save')||$(bttn).hasClass('save_ru')){ // the button in the row while edit mode
             console.log('%ctemp_contact_data: ', 'color:green'); console.dir(temp_contact_data);
             for(var i in $scope.contacts){
                 if( $scope.contacts[i].name==temp_contact_data['name'] &&
@@ -96,7 +97,7 @@ function abController($scope){
             storeData();
             handleCell(bttn);
         }
-        else if($(bttn).hasClass('edit')) {// the button in the row while static mode
+        else if($(bttn).hasClass('edit')||$(bttn).hasClass('edit_ru')) {// the button in the row while static mode
             handleCell(bttn);
             /* store old data in the temporary array: */
             // get inputs:
@@ -117,61 +118,106 @@ function abController($scope){
             $(this).remove();
         });
     }
+    // set interface language
+    $scope.setLang = function(lang){
+        window.localStorage.setItem('settings', JSON.stringify([{language:lang}]));
+        location.reload();
+    }
     // store data in the localStorage: 
     var storeData = function(){
-        console.log('store the record in DB...');
+        //console.log('store the record in DB...');
         window.localStorage.setItem('adress_book', JSON.stringify($scope.contacts));
     } 
-    
-    $scope.caption=[
-        { caption:          "Address book",
-          fields:           "The fields",
-          name:             "Name",
-          and:              "and",
-          phone_number:     "Phone Number",
-          are_mandatory:    "are mandatory",
-        }
-    ];
-    $scope.headers=[
-        {
-            Name:           "Name",
-            Surname:        "Surname",
-            Phone_Number:   "Phone Number",
-            grManage:       "Collapse/Expand groups",
-            Group:          "Group",
-            Edit_Save:      "Edit/Save",
-            Remove:         "Remove"
-        }
-    ];
+    if(lang=='en'){
+    	$scope.btns=[{
+    		edit:"edit",
+    		save:"save"
+    	}];
+        $scope.caption=[
+            { caption:          "Address book",
+              search:			"search contact",
+              fields:           "The fields",
+              name:             "Name",
+              and:              "and",
+              phone_number:     "Phone Number",
+              are_mandatory:    "are mandatory",
+            }
+        ];
+        $scope.headers=[
+            {
+                Name:           "Name",
+                Surname:        "Surname",
+                Phone_Number:   "Phone Number",
+                grManage:       "Collapse/Expand groups",
+                Group:          "Group",
+                Edit_Save:      "Edit/Save",
+                Remove:         "Remove"
+            }
+        ];
+    }else if(lang=='ru'){
+        $scope.btns=[{
+    		edit:"edit_ru",
+    		save:"save_ru"
+    	}];
+        $scope.caption=[
+            { caption:          "Адресная книга",
+              search:			"найти контакт",
+              fields:           "Поля",
+              name:             "Имя",
+              and:              "и",
+              phone_number:     "Номер телефона",
+              are_mandatory:    "Обязательны",
+            }
+        ];
+        $scope.headers=[
+            {
+                Name:           "ИмяЏ",
+                Surname:        "Фамилия",
+                Phone_Number:   "Номер телефона",
+                grManage:       "Груп./Разв.",
+                Group:          "Группа",
+                Edit_Save:      "Ред./Сохр",
+                Remove:         "Удалить"
+            }
+        ];
+    }
 }
 // turn td content into input and vice versa
 function handleCell(btn){ //console.log('btn: '); console.dir(btn);
-btn.className=(btn.className=='save')? 'edit':'save';    
-var THs =$(AddressBook.getTable()).find('th');  
-$(btn).parents('tr').eq(0).find('td')
-    .each(function(index, element) {
-        if ($(element).has('button').size()) {
-            return false;
-        } else {
-            if(btn.className=='save'){
-                // store td text
-                var cellText = $(element).text();
-                // clean td and set width as HTML-attribute to be sure that it is fixed
-                $(element).text('');
-                // create cell
-                var input = $('<input/>',{
-                        type:'text',
-                        value:cellText
-                    }).css('width', $(THs).eq(index).attr('width')+'px');
-                // set padding params for editable cell
-                $(element).html(input);
-            }else{
-                var cellText = $('input',element).val();
-                $(element).text(cellText);
-                $('input',element).remove();
-            }
-        }
-    });
+	var cEdit,cSave;
+	if(lang=='en'){
+		cEdit='edit'; 
+		cSave='save';
+	}else if(lang=='ru'){
+		cEdit='edit_ru'; 
+		cSave='save_ru';
+	}
+	btn.className=(btn.className=='save'||btn.className=='save_ru')? cEdit:cSave;  
+	var THs =$(AddressBook.getTable()).find('th');  
+	$(btn).parents('tr').eq(0).find('td')
+	    .each(function(index, element) {
+	        if ($(element).has('button').size()) {
+	            return false;
+	        } else {
+	            if(btn.className=='save'||btn.className=='save_ru'){
+	                // store td text
+	                var cellText = $(element).text();
+	                // clean td and set width as HTML-attribute to be sure that it is fixed
+	                $(element).text('');
+	                // create cell
+	                var input = $('<input/>',{
+	                        type:'text',
+	                        value:cellText
+	                    }).css('width', $(THs).eq(index).attr('width')+'px');
+	                // set padding params for editable cell
+	                $(element).html(input);
+	            }else{
+	                var cellText = $('input',element).val();
+	                $(element).text(cellText);
+	                $('input',element).remove();
+	            }
+	        }
+	    });
 }
 // get inputs 
 function getInputs(btn){

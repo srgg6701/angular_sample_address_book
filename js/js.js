@@ -11,10 +11,10 @@ $(function() {
             return $('#add_record');
         },
         setBtnValDefault:function(){
-            $(this.getBtn()).text('Add record');
+            $(this.getBtn()).text((lang=='en')? 'Add record':'Добавить');
         },
         setBtnValCancel:function(){
-            $(this.getBtn()).text('Cancel');
+            $(this.getBtn()).text((lang=='en')? 'Cancel':'Отмена');
         }
     }
     var Table=AddressBook.getTable();
@@ -29,8 +29,7 @@ $(function() {
     $('td', $(lastTr)).each(function(index, element) {
         // align the width of inputs and tds (width 100% is not the case :()
         $('input[type="text"]', element).css('width', getThWidth(element));
-    });
-        
+    });        
     // set default value on the button under the table:
     AddressBook.setBtnValDefault();
     // add new record (show next tr):
@@ -42,10 +41,25 @@ $(function() {
                     AddressBook.setBtnValCancel() : AddressBook.setBtnValDefault() );
         });
     });
+    // fold groups
     $('#gr').on('click', function(){
         var tTr=$('tr:not(:has(th))',Table);    
         if(!$(this).attr('data-collapsed')){
-            console.dir(groups);
+            // get real unique names of groups
+            var groups=[];
+            // get groups names: 
+            $('td:eq(3):not(:has(input))',tTr).each(function(index,element){
+                var current_group = $(element).text();
+                if(!groups.length) {
+                    // initialize an array:
+                    groups[0]=current_group;
+                }else{
+                    // add new group to the array:
+                    if($.inArray(current_group, groups)==-1){ 
+                        groups.push(current_group);
+                    }
+                }
+            }); //console.dir(groups);
             $(tTr).hide();
             for(var i in groups){
                 var tr=$('<tr/>',{
@@ -67,7 +81,7 @@ $(function() {
         }
     });
     $(Table).on('click','tr.group', function(event){
-        console.dir(Contacts);
+        //console.dir(Contacts);
         var Tr=event.currentTarget;
         var dataGroup = $(Tr).attr('data-group');
         var trGroup = $('tr:not(.group):has(td:contains("'+dataGroup+'"))',Table);

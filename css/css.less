@@ -28,6 +28,7 @@ html,body{
     box-sizing:border-box;
 }
 #add_record{
+    white-space: nowrap;
     width: 86px;
 }
 button{
@@ -36,6 +37,12 @@ button{
     }
     &.save:before{
         content: "Save";
+    }
+    &.edit_ru:before{
+        content: "Ред.";
+    }
+    &.save_ru:before{
+        content: "Сохр.";
     }
 }
 caption{
@@ -47,13 +54,26 @@ caption{
         float: right;
     }
     p{
-        font-size: 0.6em;
-        font-weight: normal;
-        margin: 4px auto 7px;        
+        margin: 10px auto 3px;
+        width:100%;
+        span.fleft,
+        span.fright{
+            font-size: 0.6em;
+            font-weight: normal;  
+            .link{
+                padding: 0 3px;
+            }
+        }
     }
 }
 caption, th{
     white-space:nowrap;
+}
+.fleft{
+    float: left;
+}
+.fright{
+    float: right;
 }
 #gr{
     color: blue;
@@ -68,6 +88,10 @@ caption, th{
     td{
         text-align: left !important;
     }
+}
+.link{
+    color: blue;
+    cursor: pointer;
 }
 .req{
     color: red;

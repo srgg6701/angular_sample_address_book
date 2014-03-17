@@ -5,10 +5,6 @@
         <group>
             <file>file:/C:/WebServers/home/WebDevEdu/www/Angular/AddressBook/index.html</file>
         </group>
-        <group name="Samples: Angular">
-            <file>file:/C:/WebServers/home/WebDevEdu/www/Angular/AddressBook/js/js.js</file>
-            <file>file:/C:/WebServers/home/WebDevEdu/www/Angular/AddressBook/controller.js</file>
-            <file>file:/C:/WebServers/home/WebDevEdu/www/Angular/AddressBook/css/css.less</file>
-        </group>
+        <group name="Samples: Angular"/>
     </open-files>
 </project-private>
