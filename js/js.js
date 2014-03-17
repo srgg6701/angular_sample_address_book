@@ -17,25 +17,27 @@ $(function() {
             $(this.getBtn()).text('Cancel');
         }
     }
+    var Table=AddressBook.getTable();
     /*  set TH width as HTML-attribute to be sure that it is fixed 
         and will not be changed in future */
-    $('tbody tr:first-child th',AddressBook.getTable())//getAddressBook()
+    $('tbody tr:first-child th',Table)//getAddressBook()
         .each(function(index,element){
             $(element).attr('width', $(element).width());
-    });   
+    });
+    // get the last row:
+    var lastTr = AddressBook.getLastTr();
+    $('td', $(lastTr).prev()).each(function(index, element) {
+        // align the width of inputs and tds (width 100% is not the case :()
+        $('td input[type="text"]', lastTr)
+                .eq($(element).index())
+                .css('width', setInputWidth(element));
+    });
+        
     // set default value on the button under the table:
     AddressBook.setBtnValDefault();
     // add new record (show next tr):
     $(AddressBook.getBtn()).on('click', function() {
         var btn_add_record = this;   
-        // get the last row:
-        var lastTr = AddressBook.getLastTr();
-        $('td', $(lastTr).prev()).each(function(index, element) {
-            // align the width of inputs and tds (width 100% is not the case :()
-            $('td input[type="text"]', lastTr)
-                    .eq($(element).index())
-                    .css('width', setInputWidth(element));
-        });
         // manage button text
         $(lastTr).toggle(400, function() {
             $(btn_add_record).text( ($(this).is(':visible')) ?
@@ -43,7 +45,6 @@ $(function() {
         });
     });
     $('#gr').on('click', function(){
-        var Table=AddressBook.getTable();
         var tTr=$('tr:not(:has(th))',Table);    
         if(!$(this).attr('data-collapsed')){
             console.dir(groups);
@@ -67,10 +68,8 @@ $(function() {
            $(this).removeAttr('data-collapsed');
         }
     });
-    $(AddressBook.getTable()).on('click','tr.group', function(event){
-        //alert('clicked');
+    $(Table).on('click','tr.group', function(event){
         console.dir(Contacts);
-        var Table=AddressBook.getTable();
         var Tr=event.currentTarget;
         var dataGroup = $(Tr).attr('data-group');
         var trGroup = $('tr:not(.group):has(td:contains("'+dataGroup+'"))',Table);
