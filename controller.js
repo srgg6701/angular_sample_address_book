@@ -1,8 +1,11 @@
 var lang=null;
 // 
 function abController($scope){
-    var settings = JSON.parse(window.localStorage.getItem('settings'));
-    if(!lang) lang = settings[0]['language']; console.log('lang = '+lang);
+	var settings=null;
+    if(!lang) {
+    	if(settings = JSON.parse(window.localStorage.getItem('settings')))
+    		lang = settings[0]['language']; console.log('lang = '+lang);
+    }
     // the main container:
     $scope.contacts = [];
     // the container for data which is editing in line:
