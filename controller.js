@@ -1,6 +1,6 @@
 // MUST be accessible from js.js and from controller
-var groups=[];
-var Contacts=[];
+//var groups=[];
+//var Contacts=[];
 function abController($scope){
     // the main container:
     $scope.contacts = [];
@@ -19,6 +19,7 @@ function abController($scope){
             group:          storage['group'],
             class:          className,
         });
+        var groups=[];
         var contacts_book=[];
         for(var i in $scope.contacts){ //console.log('contacts:');console.dir($scope.contacts[i]);
             var current_group = $scope.contacts[i].group;
@@ -33,7 +34,7 @@ function abController($scope){
             }
             contacts_book.push($scope.contacts[i]);
         }   
-        groups.sort(); 
+        groups.sort();        
         $scope.contacts=[];
         /*  console.log('%cgroups, contacts_book:', 'color:blue');
             console.dir(groups); console.dir(contacts_book); */
@@ -46,7 +47,7 @@ function abController($scope){
                 }
             }
         } //console.log('%ccope.contacts:', 'color:violet');console.dir($scope.contacts);
-        Contacts=$scope.contacts;
+        //Contacts=$scope.contacts;
     }
     // fill table from localStorage:
     for(var contact in adressBook){
@@ -113,6 +114,7 @@ function abController($scope){
             var ind = $(TR).index()-1;
             $scope.contacts.splice(ind,1);
             storeData();
+            $(this).remove();
         });
     }
     // store data in the localStorage: 
