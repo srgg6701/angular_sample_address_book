@@ -122,6 +122,27 @@ function abController($scope){
         console.log('store the record in DB...');
         window.localStorage.setItem('adress_book', JSON.stringify($scope.contacts));
     } 
+    
+    $scope.caption=[
+        { caption:          "Address book",
+          fields:           "The fields",
+          name:             "Name",
+          and:              "and",
+          phone_number:     "Phone Number",
+          are_mandatory:    "are mandatory",
+        }
+    ];
+    $scope.headers=[
+        {
+            Name:           "Name",
+            Surname:        "Surname",
+            Phone_Number:   "Phone Number",
+            grManage:       "Collapse/Expand groups",
+            Group:          "Group",
+            Edit_Save:      "Edit/Save",
+            Remove:         "Remove"
+        }
+    ];
 }
 // turn td content into input and vice versa
 function handleCell(btn){ //console.log('btn: '); console.dir(btn);
